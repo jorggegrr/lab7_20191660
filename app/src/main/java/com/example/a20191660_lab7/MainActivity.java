@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
             redirectUserBasedOnRole(user.getEmail());
         }
     }
-
-
     private void redirectUserBasedOnRole(String email) {
             Query query = db.collection("usuarios").whereEqualTo("correo", email);
             query.get().addOnCompleteListener(task -> {
@@ -65,16 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
                         if("activo".equals(estadoStr)){
                             switch (rol) {
-                                case "Delegado general":
+                                case "Gestor de Salón de Belleza":
                                     startActivity(new Intent(MainActivity.this, BaseGeneralActivity.class));
                                     break;
-                                case "Delegado de actividad":
-                                    // Presumiendo que BaseActivity es para "Delegado de actividad"
+                                case "Cliente":
                                     startActivity(new Intent(MainActivity.this, ClienteActivity.class));
                                     break;
                                 default:
-                                    // Para otros roles o si no se especifica
-                                    startActivity(new Intent(MainActivity.this, ClienteActivity.class));
+                                   startActivity(new Intent(MainActivity.this, ClienteActivity.class));
                                     break;
                             }
                             Toast.makeText(MainActivity.this, "Inicio de sesión exitoso.", Toast.LENGTH_SHORT).show();
@@ -82,11 +78,9 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "La cuenta no se encuentra habilitada, comuníquese con el administrador.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        // El documento no existe
-                        Toast.makeText(MainActivity.this, "Usuario no encontrado en la base de datos.", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(MainActivity.this, "Usuario no encontrado en la base de datos.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Error al obtener el documento
                     Toast.makeText(MainActivity.this, "Error al obtener datos del usuario.", Toast.LENGTH_SHORT).show();
                 }
             });
