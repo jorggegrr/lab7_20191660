@@ -27,7 +27,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
+    //guillen.jorge@pucp.edu.pe
+    //jorge123
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
